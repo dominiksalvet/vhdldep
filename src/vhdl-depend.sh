@@ -12,8 +12,8 @@
 remove_comments='s/--.*$//'
 
 get_uses='
-/^\s*use.*\;/b
-/^\s*use/,/\;/!d
+/^\s*use\s.*\;/b
+/^\s*use\s/,/\;/!d
 '
 
 one_use_per_line='
@@ -33,26 +33,26 @@ s/\s*//g
 s/\;$//
 s/\.all$//
 s/^.*\.//
-s/^.*/&\.o/
+s/$/\.o/
 s|^|'"$3"'|
 '
 
-one_local_dependency_per_line='1s/^/'"$1"'\n/'
-
-make_rule_format='
+local_use_dependencies='
 :next
 $bdone
 N
 bnext
 :done
 s/\n/ /g
-s|^|'"$2"': |
 '
 
+sed_result=$(
 sed -e "$remove_comments" \
     -e "$get_uses" \
-    "$1" | \
+    "$1" |
 sed -e "$one_use_per_line" \
-    -e "$one_local_use_dependency_per_line" | \
-sed -e "$one_local_dependency_per_line" \
-    -e "$make_rule_format"
+    -e "$one_local_use_dependency_per_line" |
+sed -e "$local_use_dependencies"
+)
+
+echo "$2: $1 $sed_result"
