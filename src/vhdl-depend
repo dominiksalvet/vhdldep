@@ -4,10 +4,11 @@
 # Copyright (C) 2018 Dominik Salvet
 # SPDX-License-Identifier: MIT
 #-------------------------------------------------------------------------------
-
-# $1 - VHDL file
-# $2 - target name
-# $3 - object files prefix
+# Parameters:
+#     $1 - VHDL file
+#     $2 - target name
+#     $3 - object files prefix
+#-------------------------------------------------------------------------------
 
 remove_comments='s/--.*$//'
 
