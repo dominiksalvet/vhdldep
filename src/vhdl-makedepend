@@ -10,6 +10,17 @@
 #     $3 - object files prefix
 #-------------------------------------------------------------------------------
 
+sw_missing=0
+# software is missing if at least one piece of software is missing
+type sed > /dev/null; sw_missing=$((sw_missing | $?))
+type echo > /dev/null; sw_missing=$((sw_missing | $?))
+
+# check if some software is missing
+if [ $sw_missing -ne 0 ]; then
+    echo "$0: Required software is missing, action canceled." >&2
+    exit 1
+fi
+
 remove_comments='s/--.*$//'
 
 get_uses='
