@@ -5,21 +5,25 @@
 # SPDX-License-Identifier: MIT
 #-------------------------------------------------------------------------------
 # Parameters:
-#     $1 - VHDL file
-#     $2 - target name
-#     $3 - object files prefix
+#     $1 - VHDL file path
+#     $2 - generated target identifier
+#     $3 - object files prefix (e.g., containing directory path)
 #-------------------------------------------------------------------------------
 
-sw_missing=0
-# software is missing if at least one piece of software is missing
-command -V sed > /dev/null; sw_missing=$((sw_missing | $?))
-command -V echo > /dev/null; sw_missing=$((sw_missing | $?))
+## SOFTWARE DEPENDECIES
+
+sw_required='echo sed'
 
 # check if some software is missing
-if [ $sw_missing -ne 0 ]; then
-    echo "$0: Required software is missing, action canceled." >&2
-    exit 1
-fi
+for i in $sw_required; do
+    # software is missing if at least one piece of software is missing
+    if ! command -v "$i" > /dev/null; then
+        echo "$0: Required software \"$i\" is missing, action canceled." >&2
+        exit 1
+    fi
+done
+
+## DEFINITIONS
 
 remove_comments='s/--.*$//'
 
@@ -57,6 +61,8 @@ bnext
 :done
 s/\n/ /g
 '
+
+## EXECUTION
 
 sed_result=$(
 sed -e "$remove_comments" \
