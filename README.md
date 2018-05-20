@@ -1,4 +1,5 @@
 # VHDL Makedepend
+
 An automatic dependency analyzer for VHDL source files, which can be used in makefile of a VHDL project. It analyses a given VHDL file **use header** and returns it's dependencies in makefile format. So it is required to use explicit use statement whenever some component is about to being used.
 
 ## License
