@@ -4,11 +4,6 @@
 # Copyright (C) 2018 Dominik Salvet
 # SPDX-License-Identifier: MIT
 #-------------------------------------------------------------------------------
-# Parameters:
-#     $1 - VHDL file path
-#     $2 - generated target identifier
-#     $3 - object files prefix (e.g., containing directory path)
-#-------------------------------------------------------------------------------
 
 ## SOFTWARE DEPENDECIES
 
@@ -23,7 +18,48 @@ for i in $sw_required; do
     fi
 done
 
+## PROCESSING OPTIONS
+
+HELP_MESSAGE="Usage: $0 [OPTION]... FILE...
+
+OPTION:
+  --help            display this help and exit
+  --object-dir=DIR  object files directory path
+
+DESCRIPTION:
+  This program prints object dependencies of a given VHDL files."
+
+for i in "$@"; do
+    case "$i" in
+        --help)
+            echo "$HELP_MESSAGE"
+            exit 0
+            ;;
+        --object-dir=?*)
+            object_dir=$(echo "$i" | sed -e 's/^[^=]*=//;s|/*$|/|;')
+            ;;
+        --*)
+            echo "$0: unrecognized option '$i'" >&2
+            echo "Try '$0 --help' for more information." >&2
+            exit 2
+            ;;
+        *)
+            if [ -z "$files" ]; then
+                files="$i"
+            else
+                files="$files $i"
+            fi
+            ;;
+    esac
+done
+
 ## DEFINITIONS
+
+get_target='
+s|^.*/||;
+s/\..*/.o/;
+s|^|'"$object_dir"'|
+'
 
 remove_comments='s/--.*$//'
 
@@ -50,7 +86,7 @@ s/\;$//
 s/\.all$//
 s/^.*\.//
 s/$/\.o/
-s|^|'"$3"'|
+s|^|'"$object_dir"'|
 '
 
 local_use_dependencies='
@@ -64,13 +100,22 @@ s/\n/ /g
 
 ## EXECUTION
 
-sed_result=$(
-sed -e "$remove_comments" \
-    -e "$get_uses" \
-    "$1" |
-sed -e "$one_use_per_line" \
-    -e "$one_local_use_dependency_per_line" |
-sed -e "$local_use_dependencies"
-)
+for i in $files; do
 
-echo "$2: $1 $sed_result"
+    target=$(
+    echo "$i" |
+    sed -e "$get_target"
+    )
+
+    sed_result=$(
+    sed -e "$remove_comments" \
+        -e "$get_uses" \
+        "$i" |
+    sed -e "$one_use_per_line" \
+        -e "$one_local_use_dependency_per_line" |
+    sed -e "$local_use_dependencies"
+    )
+
+    echo "$target: $i $sed_result"
+
+done
