@@ -20,14 +20,19 @@ done
 
 ## PROCESSING OPTIONS
 
-HELP_MESSAGE="Usage: $0 [OPTION]... FILE...
+HELP_MESSAGE='Usage: vhdl-makedepend [OPTION]... FILE...
 
 OPTION:
   --help            display this help and exit
   --object-dir=DIR  object files directory path
+  --version         output version information and exit
 
 DESCRIPTION:
-  This program prints object dependencies of a given VHDL files."
+  This program prints object dependencies of a given VHDL files.'
+
+VERSION_MESSAGE='vhdl-makedepend v1.0.0-beta
+Copyright (C) 2018 Dominik Salvet
+SPDX-License-Identifier: MIT'
 
 for i in "$@"; do
     case "$i" in
@@ -37,6 +42,10 @@ for i in "$@"; do
             ;;
         --object-dir=?*)
             object_dir=$(echo "$i" | sed -e 's/^[^=]*=//;s|/*$|/|;')
+            ;;
+        --version)
+            echo "$VERSION_MESSAGE"
+            exit 0
             ;;
         --*)
             echo "$0: unrecognized option '$i'" >&2
