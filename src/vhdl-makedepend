@@ -7,10 +7,10 @@
 
 ## SOFTWARE DEPENDECIES
 
-sw_required='echo sed'
+SW_REQUIRED='echo sed'
 
 # check if some software is missing
-for i in $sw_required; do
+for i in $SW_REQUIRED; do
     # software is missing if at least one piece of software is missing
     if ! command -v "$i" > /dev/null; then
         echo "$0: Required software \"$i\" is missing, action canceled." >&2
@@ -20,7 +20,7 @@ done
 
 ## PROCESSING OPTIONS
 
-HELP_MESSAGE='Usage: vhdl-makedepend [OPTION]... FILE...
+HELP_MESSAGE="Usage: $0 [OPTION]... FILE...
 
 OPTION:
   --help            display this help and exit
@@ -28,12 +28,13 @@ OPTION:
   --version         output version information and exit
 
 DESCRIPTION:
-  This program prints object dependencies of a given VHDL files.'
+  This program prints object dependencies of a given VHDL files."
 
-VERSION_MESSAGE='vhdl-makedepend v1.0.0-beta
+VERSION_MESSAGE="$0 v1.0.0-beta
 Copyright (C) 2018 Dominik Salvet
-SPDX-License-Identifier: MIT'
+SPDX-License-Identifier: MIT"
 
+# processing parameters
 for i in "$@"; do
     case "$i" in
         --help)
@@ -64,20 +65,20 @@ done
 
 ## DEFINITIONS
 
-get_target='
+GET_TARGET='
 s|^.*/||;
 s/\..*/.o/;
 s|^|'"$object_dir"'|
 '
 
-remove_comments='s/--.*$//'
+REMOVE_COMMENTS='s/--.*$//'
 
-get_uses='
+GET_USES='
 /^\s*use\s.*\;/b
 /^\s*use\s/,/\;/!d
 '
 
-one_use_per_line='
+ONE_USE_PER_LINE='
 /use/!b
 :next
 /\;/bdone
@@ -87,7 +88,7 @@ bnext
 s/\n//g
 '
 
-one_local_use_dependency_per_line='
+ONE_LOCAL_USE_DEPENDENCY_PER_LINE='
 s/use//
 s/\s*//g
 /^ieee\|^std/d
@@ -98,7 +99,7 @@ s/$/\.o/
 s|^|'"$object_dir"'|
 '
 
-local_use_dependencies='
+LOCAL_USE_DEPENDENCIES='
 :next
 $bdone
 N
@@ -113,16 +114,16 @@ for i in $files; do
 
     target=$(
     echo "$i" |
-    sed -e "$get_target"
+    sed -e "$GET_TARGET"
     )
 
     sed_result=$(
-    sed -e "$remove_comments" \
-        -e "$get_uses" \
+    sed -e "$REMOVE_COMMENTS" \
+        -e "$GET_USES" \
         "$i" |
-    sed -e "$one_use_per_line" \
-        -e "$one_local_use_dependency_per_line" |
-    sed -e "$local_use_dependencies"
+    sed -e "$ONE_USE_PER_LINE" \
+        -e "$ONE_LOCAL_USE_DEPENDENCY_PER_LINE" |
+    sed -e "$LOCAL_USE_DEPENDENCIES"
     )
 
     echo "$target: $i $sed_result"
