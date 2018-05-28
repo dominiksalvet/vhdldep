@@ -34,33 +34,57 @@ VERSION_MESSAGE="$0 v1.0.0-beta
 Copyright (C) 2018 Dominik Salvet
 SPDX-License-Identifier: MIT"
 
+# function to add a file to the list of current ones
+add_file() {
+    if [ -z "$file_list" ]; then
+        file_list="$1"
+    else
+        file_list="$file_list $1"
+    fi
+}
+
+# next parameters are only file names
+file_names_only=false
+
 # processing parameters
 for i in "$@"; do
-    case "$i" in
-        --help)
-            echo "$HELP_MESSAGE"
-            exit 0
-            ;;
-        --object-dir=?*)
-            object_dir=$(echo "$i" | sed -e 's/^[^=]*=//;s|/*$|/|;')
-            ;;
-        --version)
-            echo "$VERSION_MESSAGE"
-            exit 0
-            ;;
-        --*)
-            echo "$0: unrecognized option '$i'" >&2
-            echo "Try '$0 --help' for more information." >&2
-            exit 2
-            ;;
-        *)
-            if [ -z "$files" ]; then
-                files="$i"
-            else
-                files="$files $i"
-            fi
-            ;;
-    esac
+    if [ "$file_names_only" = true ]; then
+        add_file "$i"
+    else
+        case "$i" in
+            --help)
+                echo "$HELP_MESSAGE"
+                exit 0
+                ;;
+            --object-dir=?*)
+                # get the DIR path from this parameter
+                object_dir=$(echo "$i" | sed -e 's/^[^=]*=//;s|/*$|/|;')
+                ;;
+            --version)
+                echo "$VERSION_MESSAGE"
+                exit 0
+                ;;
+            --)
+                file_names_only=true
+                ;;
+            --*)
+                echo "$0: unrecognized option '$i'" >&2
+                echo "Try '$0 --help' for more information." >&2
+                exit 3
+                ;;
+            *)
+                add_file "$i"
+                ;;
+        esac
+    fi
+done
+
+# check if files in the list exist
+for i in $file_list; do
+    if [ ! -f "$i" ]; then
+        echo "$0: Can not open the '$i' file." >&2
+        exit 2
+    fi
 done
 
 ## DEFINITIONS
@@ -110,7 +134,7 @@ s/\n/ /g
 
 ## EXECUTION
 
-for i in $files; do
+for i in $file_list; do
 
     target=$(
     echo "$i" |
@@ -120,7 +144,7 @@ for i in $files; do
     sed_result=$(
     sed -e "$REMOVE_COMMENTS" \
         -e "$GET_USES" \
-        "$i" |
+        -- "$i" |
     sed -e "$ONE_USE_PER_LINE" \
         -e "$ONE_LOCAL_USE_DEPENDENCY_PER_LINE" |
     sed -e "$LOCAL_USE_DEPENDENCIES"
