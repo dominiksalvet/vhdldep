@@ -34,6 +34,8 @@ VERSION_MESSAGE="$0 v1.0.0-beta
 Copyright (C) 2018 Dominik Salvet
 SPDX-License-Identifier: MIT"
 
+HINT_MESSAGE="Try '$0 --help' for more information."
+
 # function to add a file to the list of current ones
 add_file() {
     if [ -z "$file_list" ]; then
@@ -42,6 +44,13 @@ add_file() {
         file_list="$file_list $1"
     fi
 }
+
+# check if no argument provided
+if [ $# -eq 0 ]; then
+    echo "$0: No argument provided." >&2
+    echo "$HINT_MESSAGE" >&2
+    exit 1
+fi
 
 # next parameters are only file names
 file_names_only=false
@@ -69,8 +78,8 @@ for i in "$@"; do
                 ;;
             --*)
                 echo "$0: unrecognized option '$i'" >&2
-                echo "Try '$0 --help' for more information." >&2
-                exit 3
+                echo "$HINT_MESSAGE" >&2
+                exit 1
                 ;;
             *)
                 add_file "$i"
@@ -83,7 +92,7 @@ done
 for i in $file_list; do
     if [ ! -f "$i" ]; then
         echo "$0: Can not open the '$i' file." >&2
-        exit 2
+        exit 1
     fi
 done
 
