@@ -25,7 +25,7 @@ done
 
 
 #-------------------------------------------------------------------------------
-# PROCESSING OPTIONS
+# PROCESSING PARAMETERS
 #-------------------------------------------------------------------------------
 
 HELP_MESSAGE="Usage: $0 [OPTION]... FILE...
@@ -33,14 +33,14 @@ HELP_MESSAGE="Usage: $0 [OPTION]... FILE...
 OPTION:
   --help            display this help and exit
   --object-dir=DIR  object files directory path
-  --version         output version information and exit
+  --about           display information about this program and exit"
 
-DESCRIPTION:
-  This program prints object dependencies of a given VHDL files."
+ABOUT_MESSAGE="$0 1.0.0
+This program displays object dependencies of one or more VHDL files.
 
-VERSION_MESSAGE="$0 v1.0.0-beta
 Copyright (C) 2018 Dominik Salvet
-SPDX-License-Identifier: MIT"
+SPDX-License-Identifier: MIT
+<https://github.com/dominiksalvet/vhdl-makedepend>"
 
 HINT_MESSAGE="Try '$0 --help' for more information."
 
@@ -63,7 +63,7 @@ fi
 # next parameters are only file names
 file_names_only=false
 
-# processing parameters
+# processing each parameter
 for i in "$@"; do
     if [ "$file_names_only" = true ]; then
         add_file "$i"
@@ -77,8 +77,8 @@ for i in "$@"; do
                 # get the DIR path from this parameter
                 object_dir=$(echo "$i" | sed -e 's/^[^=]*=//;s|/*$|/|;')
                 ;;
-            --version)
-                echo "$VERSION_MESSAGE"
+            --about)
+                echo "$ABOUT_MESSAGE"
                 exit 0
                 ;;
             --)
