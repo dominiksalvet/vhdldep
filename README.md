@@ -14,8 +14,9 @@ Output of the `./vhdl-makedepend -help` terminal command opened in the project *
 Usage: ./vhdl-makedepend [OPTION]... FILE...
 
 OPTION:
-  -help            display this help and exit
   -object-dir=DIR  object files directory path
+  --               force the following arguments to be file names
+  -help            display this help and exit
   -about           display information about this program and exit
 ```
 
