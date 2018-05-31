@@ -31,8 +31,9 @@ done
 HELP_MESSAGE="Usage: $0 [OPTION]... FILE...
 
 OPTION:
-  -help            display this help and exit
   -object-dir=DIR  object files directory path
+  --               force the following arguments to be file names
+  -help            display this help and exit
   -about           display information about this program and exit"
 
 ABOUT_MESSAGE="$0 1.0.0
@@ -72,20 +73,20 @@ for i in "$@"; do
         add_file "$i"
     else
         case "$i" in
-            -help)
-                echo "$HELP_MESSAGE"
-                exit 0
-                ;;
             -object-dir=?*)
                 # get the DIR path from this parameter, normalize the path
                 object_dir=$(echo "$i" | sed -e 's|^-object-dir=||;s|$|/|;s|/\+|/|g;')
                 ;;
+            --)
+                file_names_only=true
+                ;;
+            -help)
+                echo "$HELP_MESSAGE"
+                exit 0
+                ;;
             -about)
                 echo "$ABOUT_MESSAGE"
                 exit 0
-                ;;
-            --)
-                file_names_only=true
                 ;;
             -*)
                 echo "$0: unrecognized option '$i'" >&2
