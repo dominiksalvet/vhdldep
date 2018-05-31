@@ -45,15 +45,30 @@ SPDX-License-Identifier: MIT
 
 HINT_MESSAGE="Try \"$0 -help\" for more information."
 
+# normalize a path (removes only unnecessary slashes "/")
+NORMALIZE_PATH='s|/\+|/|g'
+
+# in case of existing spaces, setup persisting spaces for one more sed processing
+SETUP_PERSIST_SPACES='s/ /\\\\ /g'
+
+# get object directory path, normalize it and set up persist spaces
+GET_OBJECT_DIR_PATH='
+s|^-object-dir=||
+s|$|/|
+'"$NORMALIZE_PATH"'
+'"$SETUP_PERSIST_SPACES"'
+'
+
 # function to add a file to the list of current ones
 add_file() {
-    # normalize a given path (removes only unnecessary slashes "/")
-    norm_path=$(echo "$1" | sed -e 's|/\+|/|g')
+    # normalize the path
+    norm_path=$(echo "$1" | sed -e "$NORMALIZE_PATH")
 
     if [ -z "$file_list" ]; then
         file_list="$norm_path"
     else
-        file_list="$file_list $norm_path"
+        # the file path may contain spaces, it is required to use a different delimiter
+        file_list="$file_list"\n"$norm_path"
     fi
 }
 
@@ -67,8 +82,8 @@ for i in "$@"; do
     else
         case "$i" in
             -object-dir=?*)
-                # get the DIR path from this parameter, normalize the path
-                object_dir=$(echo "$i" | sed -e 's|^-object-dir=||;s|$|/|;s|/\+|/|g;')
+                # get the DIR path from this parameter
+                object_dir=$(echo "$i" | sed -e "$GET_OBJECT_DIR_PATH")
                 ;;
             --)
                 file_names_only=true
@@ -100,6 +115,9 @@ if [ -z "$file_list" ]; then
     exit 1
 fi
 
+# change internal field separator, namely for use of foreach loops
+IFS=\n
+
 # check if files in the list exist
 for i in $file_list; do
     if [ ! -f "$i" ]; then
@@ -110,7 +128,7 @@ done
 
 
 #-------------------------------------------------------------------------------
-# DEFINITIONS
+# VHDL FILES ANALYSIS
 #-------------------------------------------------------------------------------
 
 GET_TARGET='
@@ -158,11 +176,6 @@ bnext
 s/\n/ /g
 '
 
-
-#-------------------------------------------------------------------------------
-# EXECUTION
-#-------------------------------------------------------------------------------
-
 for i in $file_list; do
 
     target=$(
@@ -180,6 +193,6 @@ for i in $file_list; do
     sed -e "$LOCAL_USE_DEPENDENCIES"
     )
 
-    echo "$target: $i $sed_result"
+    echo "$target: $(echo "$i" | sed -e "$SETUP_PERSIST_SPACES") $sed_result"
 
 done
