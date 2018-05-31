@@ -18,7 +18,7 @@ SW_REQUIRED='echo sed'
 for i in $SW_REQUIRED; do
     # software is missing if at least one piece of software is missing
     if ! command -v "$i" > /dev/null; then
-        echo "$0: Required software \"$i\" is missing, action canceled." >&2
+        echo "$0: Required software \"$i\" is missing." >&2
         exit 1
     fi
 done
@@ -37,13 +37,13 @@ OPTION:
   -about           display information about this program and exit"
 
 ABOUT_MESSAGE="$0 1.0.0
-This program displays object dependencies of one or more VHDL files.
+This program displays file dependencies of one or more VHDL files.
 
 Copyright (C) 2018 Dominik Salvet
 SPDX-License-Identifier: MIT
 <https://github.com/dominiksalvet/vhdl-makedepend>"
 
-HINT_MESSAGE="Try '$0 -help' for more information."
+HINT_MESSAGE="Try \"$0 -help\" for more information."
 
 # function to add a file to the list of current ones
 add_file() {
@@ -56,13 +56,6 @@ add_file() {
         file_list="$file_list $norm_path"
     fi
 }
-
-# check if no argument provided
-if [ $# -eq 0 ]; then
-    echo "$0: No argument provided." >&2
-    echo "$HINT_MESSAGE" >&2
-    exit 1
-fi
 
 # next parameters are only file names
 file_names_only=false
@@ -89,7 +82,7 @@ for i in "$@"; do
                 exit 0
                 ;;
             -*)
-                echo "$0: unrecognized option '$i'" >&2
+                echo "$0: The option \"$i\" was not recognized." >&2
                 echo "$HINT_MESSAGE" >&2
                 exit 1
                 ;;
@@ -100,10 +93,17 @@ for i in "$@"; do
     fi
 done
 
+# check if any argument with file path provided
+if [ -z "$file_list" ]; then
+    echo "$0: No argument with file path provided." >&2
+    echo "$HINT_MESSAGE" >&2
+    exit 1
+fi
+
 # check if files in the list exist
 for i in $file_list; do
     if [ ! -f "$i" ]; then
-        echo "$0: Can not open the '$i' file." >&2
+        echo "$0: Can not open the \"$i\" file." >&2
         exit 1
     fi
 done
