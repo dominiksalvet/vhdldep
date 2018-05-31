@@ -46,10 +46,13 @@ HINT_MESSAGE="Try '$0 --help' for more information."
 
 # function to add a file to the list of current ones
 add_file() {
+    # normalize a given path (removes only unnecessary slashes "/")
+    norm_path=$(echo "$1" | sed -e 's|/\+|/|g')
+
     if [ -z "$file_list" ]; then
-        file_list="$1"
+        file_list="$norm_path"
     else
-        file_list="$file_list $1"
+        file_list="$file_list $norm_path"
     fi
 }
 
@@ -74,8 +77,8 @@ for i in "$@"; do
                 exit 0
                 ;;
             --object-dir=?*)
-                # get the DIR path from this parameter
-                object_dir=$(echo "$i" | sed -e 's/^[^=]*=//;s|/*$|/|;')
+                # get the DIR path from this parameter, normalize the path
+                object_dir=$(echo "$i" | sed -e 's|^--object-dir=||;s|$|/|;s|/\+|/|g;')
                 ;;
             --about)
                 echo "$ABOUT_MESSAGE"
