@@ -31,9 +31,9 @@ done
 HELP_MESSAGE="Usage: $0 [OPTION]... FILE...
 
 OPTION:
-  --help            display this help and exit
-  --object-dir=DIR  object files directory path
-  --about           display information about this program and exit"
+  -help            display this help and exit
+  -object-dir=DIR  object files directory path
+  -about           display information about this program and exit"
 
 ABOUT_MESSAGE="$0 1.0.0
 This program displays object dependencies of one or more VHDL files.
@@ -42,7 +42,7 @@ Copyright (C) 2018 Dominik Salvet
 SPDX-License-Identifier: MIT
 <https://github.com/dominiksalvet/vhdl-makedepend>"
 
-HINT_MESSAGE="Try '$0 --help' for more information."
+HINT_MESSAGE="Try '$0 -help' for more information."
 
 # function to add a file to the list of current ones
 add_file() {
@@ -72,22 +72,22 @@ for i in "$@"; do
         add_file "$i"
     else
         case "$i" in
-            --help)
+            -help)
                 echo "$HELP_MESSAGE"
                 exit 0
                 ;;
-            --object-dir=?*)
+            -object-dir=?*)
                 # get the DIR path from this parameter, normalize the path
-                object_dir=$(echo "$i" | sed -e 's|^--object-dir=||;s|$|/|;s|/\+|/|g;')
+                object_dir=$(echo "$i" | sed -e 's|^-object-dir=||;s|$|/|;s|/\+|/|g;')
                 ;;
-            --about)
+            -about)
                 echo "$ABOUT_MESSAGE"
                 exit 0
                 ;;
             --)
                 file_names_only=true
                 ;;
-            --*)
+            -*)
                 echo "$0: unrecognized option '$i'" >&2
                 echo "$HINT_MESSAGE" >&2
                 exit 1
