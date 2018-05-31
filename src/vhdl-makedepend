@@ -114,12 +114,14 @@ done
 #-------------------------------------------------------------------------------
 
 GET_TARGET='
-s|^.*/||;
-s/\..*/.o/;
+s|^.*/||
+s/\..*/.o/
 s|^|'"$object_dir"'|
 '
 
 REMOVE_COMMENTS='s/--.*$//'
+
+ALL_TO_LOWER_CASE='s/.*/\L&/'
 
 GET_USES='
 /^\s*use\s.*\;/b
@@ -170,6 +172,7 @@ for i in $file_list; do
 
     sed_result=$(
     sed -e "$REMOVE_COMMENTS" \
+        -e "$ALL_TO_LOWER_CASE" \
         -e "$GET_USES" \
         -- "$i" |
     sed -e "$ONE_USE_PER_LINE" \
