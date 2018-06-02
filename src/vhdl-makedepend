@@ -27,6 +27,10 @@ done
 # PROCESSING PARAMETERS
 #-------------------------------------------------------------------------------
 
+# create a new line constant - \n
+NEW_LINE='
+'
+
 HELP_MESSAGE="Usage: $0 [OPTION]... FILE...
 
 OPTION:
@@ -67,7 +71,7 @@ add_file() {
         file_list="$norm_path"
     else
         # the file path may contain spaces, it is required to use a different delimiter
-        file_list="$file_list"\n"$norm_path"
+        file_list="$file_list$NEW_LINE$norm_path"
     fi
 }
 
@@ -114,8 +118,8 @@ if [ -z "$file_list" ]; then
     exit 1
 fi
 
-# change internal field separator, namely for use of foreach loops
-IFS=\n
+# change internal field separator, namely for use in the following for loops
+IFS=$NEW_LINE
 
 # check if files in the list exist
 for i in $file_list; do
