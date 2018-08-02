@@ -44,7 +44,7 @@ This program displays file dependencies of one or more VHDL files.
 
 Copyright (C) 2018 Dominik Salvet
 SPDX-License-Identifier: MIT
-<https://github.com/dominiksalvet/vhdl-makedepend>"
+https://gitlab.com/dominiksalvet/vhdl-makedepend"
 
 HINT_MESSAGE="Try \"$0 -help\" for more information."
 
