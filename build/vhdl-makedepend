@@ -40,9 +40,9 @@ OPTION:
   -about           display information about this program and exit"
 
 ABOUT_MESSAGE="$0 1.0.0
-This program displays file dependencies of one or more VHDL files.
+Generate dependencies of given VHDL files based on their 'use' statements.
 
-Copyright (C) 2018 Dominik Salvet
+Copyright 2018 Dominik Salvet
 SPDX-License-Identifier: MIT
 https://gitlab.com/dominiksalvet/vhdl-makedepend"
 
