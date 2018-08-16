@@ -1,4 +1,4 @@
-# VHDL Makedepend
+# VHDL Makedepend *(vhdl-makedepend)*
 
 An automatic dependency analyzer for VHDL source files, which can be used in a makefile of a VHDL project. It analyses use statements of one or more VHDL files and returns their file dependencies in a format of makefile rules. Dependencies to STD and IEEE libraries are ignored. Final dependencies can be included into a project makefile to make building VHDL components possible. The project is developed to work with [GHDL](https://github.com/ghdl/ghdl).
 
@@ -31,6 +31,10 @@ my_obj_dir/lifo_tb.o: tb/lifo_tb.vhdl my_obj_dir/string_pkg.o my_obj_dir/lifo.o
 </pre>
 
 The *lifo_tb.vhdl* file has been taken from the [vhdl_collection](https://gitlab.com/dominiksalvet/vhdl_collection) repository.
+
+## Contribute
+
+See the [*CONTRIBUTING.md*](CONTRIBUTING.md) file for details.
 
 ## License
 
