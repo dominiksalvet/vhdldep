@@ -3,7 +3,7 @@
 #-------------------------------------------------------------------------------
 # Copyright 2018 Dominik Salvet
 # SPDX-License-Identifier: MIT
-# https://gitlab.com/dominiksalvet/vhdl-makedepend
+# https://gitlab.com/dominiksalvet/vhdl-depgen
 #-------------------------------------------------------------------------------
 
 
@@ -44,7 +44,7 @@ Generate dependencies of given VHDL files based on their 'use' statements.
 
 Copy"'right 2018 Dominik Salvet
 SPDX License Identifier: MIT
-https://gitlab.com/dominiksalvet/vhdl-makedepend'
+https://gitlab.com/dominiksalvet/vhdl-depgen'
 
 HINT_MESSAGE="Try \"$0 -help\" for more information."
 
