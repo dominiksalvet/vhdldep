@@ -42,9 +42,9 @@ OPTION:
 ABOUT_MESSAGE="$0 1.0.0
 Generate dependencies of given VHDL files based on their 'use' statements.
 
-Copyright 2018 Dominik Salvet
-SPDX-License-Identifier: MIT
-https://gitlab.com/dominiksalvet/vhdl-makedepend"
+Copy"'right 2018 Dominik Salvet
+SPDX License Identifier: MIT
+https://gitlab.com/dominiksalvet/vhdl-makedepend'
 
 HINT_MESSAGE="Try \"$0 -help\" for more information."
 
