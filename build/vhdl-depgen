@@ -8,24 +8,27 @@
 
 
 #-------------------------------------------------------------------------------
-# SOFTWARE DEPENDECIES
+# SOFTWARE DEPENDENCIES
 #-------------------------------------------------------------------------------
 
 # list of required software
-SW_REQUIRED='echo sed'
+SW_REQUIRED='command echo sed ['
 
 # check if some software is missing
 for i in $SW_REQUIRED; do
     # software is missing if at least one piece of software is missing
     if ! command -v "$i" > /dev/null; then
-        echo "$0: Required software \"$i\" is missing." >&2
+        echo "$0: Required software '$i' is missing, action canceled." >&2
         exit 1
     fi
 done
 
 #-------------------------------------------------------------------------------
-# PROCESSING PARAMETERS
+# DEFINITIONS
 #-------------------------------------------------------------------------------
+
+# the current version of the program
+VERSION=1.0.0
 
 # create a new line constant - \n
 NEW_LINE='
@@ -39,14 +42,14 @@ OPTION:
   -help            display this help and exit
   -about           display information about this program and exit"
 
-ABOUT_MESSAGE="$0 1.0.0
+ABOUT_MESSAGE="vhdl-depgen $VERSION
 Generate dependencies of given VHDL files based on their 'use' statements.
 
 Copy"'right 2018 Dominik Salvet
 SPDX License Identifier: MIT
 https://gitlab.com/dominiksalvet/vhdl-depgen'
 
-HINT_MESSAGE="Try \"$0 -help\" for more information."
+HINT_MESSAGE="Try '$0 -help' for more information."
 
 # normalize a path (removes only unnecessary slashes "/")
 NORMALIZE_PATH='s|/\+|/|g'
@@ -75,6 +78,10 @@ add_file() {
     fi
 }
 
+#-------------------------------------------------------------------------------
+# PROCESSING PARAMETERS
+#-------------------------------------------------------------------------------
+
 # next parameters are only file names
 file_names_only=false
 
@@ -100,7 +107,7 @@ for i in "$@"; do
                 exit 0
                 ;;
             -*)
-                echo "$0: The option \"$i\" was not recognized." >&2
+                echo "$0: The option '$i' was not recognized." >&2
                 echo "$HINT_MESSAGE" >&2
                 exit 1
                 ;;
@@ -124,7 +131,7 @@ IFS=$NEW_LINE
 # check if files in the list exist
 for i in $file_list; do
     if [ ! -f "$i" ]; then
-        echo "$0: Can not open the \"$i\" file." >&2
+        echo "$0: Can not open the '$i' file." >&2
         exit 1
     fi
 done
