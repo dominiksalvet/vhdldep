@@ -9,6 +9,7 @@ The changes not yet present in any release are listed in this section.
 ### Added
 
 * Add [*makefile*](makefile) for installation issues.
+* Support for the `-version` flag.
 
 ### Changed
 
