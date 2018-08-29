@@ -49,7 +49,8 @@ Copy"'right 2018 Dominik Salvet
 SPDX License Identifier: MIT
 https://gitlab.com/dominiksalvet/vhdl-depgen'
 
-HINT_MESSAGE="Try '$0 -help' for more information."
+HINT_MESSAGE="POSSIBLE SOLUTIONS:
+  * use the '$0 -help' command for more information"
 
 # normalize a path (removes only unnecessary slashes "/")
 NORMALIZE_PATH='s|/\+|/|g'
@@ -106,9 +107,13 @@ for i in "$@"; do
                 echo "$ABOUT_MESSAGE"
                 exit 0
                 ;;
+            -version)
+                echo "$VERSION"
+                exit 0
+                ;;
             -*)
-                echo "$0: The option '$i' was not recognized." >&2
-                echo "$HINT_MESSAGE" >&2
+                echo "$0: The option '$i' was not recognized.
+$HINT_MESSAGE" >&2
                 exit 1
                 ;;
             *)
@@ -120,8 +125,8 @@ done
 
 # check if any argument with file path provided
 if [ -z "$file_list" ]; then
-    echo "$0: No argument with file path provided." >&2
-    echo "$HINT_MESSAGE" >&2
+    echo "$0: No argument with file path provided.
+$HINT_MESSAGE" >&2
     exit 1
 fi
 
