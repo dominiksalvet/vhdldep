@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 The changes not yet present in any release are listed in this section.
 
+### Added
+
+* Add [*makefile*](makefile) for installation issues.
+
 ### Changed
 
 * This project licensing policy is compliant with [REUSE Practices](https://reuse.software/practices/2.0/).
