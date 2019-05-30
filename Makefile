@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# Copyright 2018 Dominik Salvet
+# Copyright 2018-2019 Dominik Salvet
 # SPDX-License-Identifier: MIT
 # https://github.com/dominiksalvet/vhdldep
 #-------------------------------------------------------------------------------
@@ -9,53 +9,41 @@
 # DEFINITIONS
 #-------------------------------------------------------------------------------
 
-# environment configuration
-SHELL := /bin/sh
-ECHO := echo
-SED := sed
-COLUMN := column
-CP := cp
-RM_F := rm -f
+.POSIX: # this file should be processed as a POSIX makefile
+.SILENT: # do not print the lines that are being executed
+
+# environment definitions
+MKDIR_P = mkdir -p --
+CP = cp --
+RM_F = rm -f --
+ECHO = echo
 
 # directory definitions
-SRC_DIR := src
-INSTALL_DIR := ~/.local/bin
-
-#-------------------------------------------------------------------------------
-# HELP GENERATOR
-#-------------------------------------------------------------------------------
-
-# sed script - get automatically target descriptions from Makefile
-define GET_TARGET_DESCRIPTIONS
-/^[^:=#[:blank:]]+[[:blank:]]*:[^:=#]*#/!d
-s/[:=#[:blank:]][^#]*//
-s/[[:blank:]#]*#[[:blank:]#]*/#/g
-s/^/  /
-endef
-export GET_TARGET_DESCRIPTIONS
-
-# shows generated help of a given makefile from it's comments
-define show_generated_help
-	@$(ECHO) 'USAGE: make [TARGET]...'
-	@$(ECHO)
-	@$(ECHO) 'TARGET:'
-	@$(SED) -E -e "$$GET_TARGET_DESCRIPTIONS" $(1) | $(COLUMN) -t -s '#'
-endef
+BIN_DIR = bin
+PREFIX = $(HOME)/.local # default prefix value
 
 #-------------------------------------------------------------------------------
 # TARGETS
 #-------------------------------------------------------------------------------
 
-.PHONY: all install uninstall help
+all: # there is no building required
 
-# there is no building required, so the default target references to the help target
-all: help
+install:
+	$(MKDIR_P) '$(PREFIX)'/bin/
+	$(CP) '$(BIN_DIR)'/vhdldep '$(PREFIX)'/bin/
 
-install: # install the entire project
-	$(CP) $(SRC_DIR)/vhdldep $(INSTALL_DIR)/
+uninstall:
+	$(RM_F) '$(PREFIX)'/bin/vhdldep
 
-uninstall: # uninstall the project
-	$(RM_F) $(INSTALL_DIR)/vhdldep
-
-help: # default, show this help
-	$(call show_generated_help,Makefile)
+help:
+	$(ECHO) 'USAGE:'
+	$(ECHO) '  make [TARGET...] [MACRO=VALUE...]'
+	$(ECHO)
+	$(ECHO) 'TARGET:'
+	$(ECHO) '  all        do nothing (default)'
+	$(ECHO) '  install    install vhdldep'
+	$(ECHO) '  uninstall  uninstall vhdldep'
+	$(ECHO) '  help       show this help'
+	$(ECHO)
+	$(ECHO) 'MACRO:'
+	$(ECHO) '  PREFIX  installation prefix'

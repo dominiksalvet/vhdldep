@@ -10,7 +10,7 @@ Remember to be explicit in use statements; every component that is about to be u
 
 ## Help
 
-Output of the `./vhdldep -help` terminal command opened in the project *src* directory:
+Output of the `./vhdldep -help` terminal command opened in the project *bin* directory:
 
 ```
 Usage: ./vhdldep [OPTION]... FILE...
@@ -27,9 +27,9 @@ OPTION:
 An example of using this program:
 
 <pre>
-.../vhdldep/src $ <b>./vhdldep -object-dir=my_obj_dir tb/lifo_tb.vhdl</b>
+.../vhdldep/bin $ <b>./vhdldep -object-dir=my_obj_dir tb/lifo_tb.vhdl</b>
 my_obj_dir/lifo_tb.o: tb/lifo_tb.vhdl my_obj_dir/string_pkg.o my_obj_dir/lifo.o
-.../vhdldep/src $ 
+.../vhdldep/bin $ 
 </pre>
 
 The *lifo_tb.vhdl* file has been taken from the [vhdl_collection](https://github.com/dominiksalvet/vhdl_collection) repository.
