@@ -3,7 +3,7 @@
 #-------------------------------------------------------------------------------
 # Copyright 2018-2019 Dominik Salvet
 # SPDX-License-Identifier: MIT
-# https://gitlab.com/dominiksalvet/vhdldep
+# https://github.com/dominiksalvet/vhdldep
 #-------------------------------------------------------------------------------
 
 
@@ -47,7 +47,7 @@ Simple VHDL dependency generator.
 
 Copy"'right 2018-2019 Dominik Salvet
 SPDX License Identifier: MIT
-https://gitlab.com/dominiksalvet/vhdldep'
+https://github.com/dominiksalvet/vhdldep'
 
 HINT_MESSAGE="POSSIBLE SOLUTIONS:
   * use the '$0 -help' command for more information"

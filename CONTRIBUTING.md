@@ -1,28 +1,29 @@
-# Contribution Guide
+# Contributing
 
-The development of this project is published on [this website](https://gitlab.com/dominiksalvet/vhdldep) and **everyone is welcome to contribute**. Here is described how.
+The development of vhdldep is published on [this website](https://github.com/dominiksalvet/vhdldep) and **everyone is welcome to contribute**. Here is described how.
 
 ## Suggestions
 
-If you have any suggestions on development of the project, follow these steps:
+If you have any suggestions (or questions) about the development of vhdldep, follow these steps:
 
-1. Take a look at [issues](https://gitlab.com/dominiksalvet/vhdldep/issues) of the project and **make sure that the same suggestion wasn't already reported**.
-2. If not, open a [new issue](https://gitlab.com/dominiksalvet/vhdldep/issues/new). In the issue, **try to provide as much relevant information as possible**.
+1. Make sure the same suggestion has not been already reported in [issues](https://github.com/dominiksalvet/vhdldep/issues).
+2. Open a [new issue](https://github.com/dominiksalvet/vhdldep/issues/new/choose).
+3. In the issue, try to provide as much relevant information as possible.
 
-## Merge requests
+## Pull requests
 
-**Except the merge requests with bug fixes**, every merge request must precede creating an issue as described in the [previous section](#suggestions) and also must be approved. Then, continue as described below:
+Except for pull requests with bug fixes, every pull request must be preceded by creating an issue as described in the [previous section](#suggestions) and must be approved by a vhdldep developer. Then continue as described below:
 
-1. Fork this project.
-2. Create a new branch with descriptive name according to your changes.
-3. Note your changes to the [Unreleased](CHANGELOG.md#unreleased) section in the [*CHANGELOG.md*](CHANGELOG.md) file.
-4. Commit and push your changes to the branch.
-5. Submit a [new merge request](https://gitlab.com/dominiksalvet/vhdldep/merge_requests/new) with **clear description of the problem and it's solution**. Also include the relevant issue number if applicable.
-
----
-
-If you edit any source code, retain its original formatting.
+1. Fork vhdldep.
+2. Create a new branch with a meaningful name.
+3. Make your changes in the branch.
+4. Add notable changes to the [*CHANGELOG.md*](CHANGELOG.md) file.
+5. Make sure **all changes are POSIX-friendly and consistent** with used formatting and conventions.
+6. Push all your changes to the branch.
+7. Submit a [new pull request](https://github.com/dominiksalvet/vhdldep/pulls) to the `master` branch.
+8. In the pull request, provide a clear description of the problem and its solution.
+9. In the pull request, provide relevant issue numbers if any exist.
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under the same license as the affected files. In case of creating a new file, choose the most appropriate license with respect to the project [licensing policy](README.md#license) and the type of created file.
+By contributing, you agree that your contributions will be licensed under the same license as the affected files. In case of creating a new file, choose the most appropriate license with respect to vhdldep [licensing policy](README.md#license) and the type of the created file.

@@ -32,7 +32,7 @@ my_obj_dir/lifo_tb.o: tb/lifo_tb.vhdl my_obj_dir/string_pkg.o my_obj_dir/lifo.o
 .../vhdldep/src $ 
 </pre>
 
-The *lifo_tb.vhdl* file has been taken from the [vhdl_collection](https://gitlab.com/dominiksalvet/vhdl_collection) repository.
+The *lifo_tb.vhdl* file has been taken from the [vhdl_collection](https://github.com/dominiksalvet/vhdl_collection) repository.
 
 ## Contribute
 

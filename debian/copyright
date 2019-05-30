@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: vhdldep
 Upstream-Contact: Dominik Salvet
-Source: https://gitlab.com/dominiksalvet/vhdldep
+Source: https://github.com/dominiksalvet/vhdldep
 
 Files: CHANGELOG.md CONTRIBUTING.md
 Copyright: Copyright 2018 Dominik Salvet

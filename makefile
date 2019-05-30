@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------
 # Copyright 2018 Dominik Salvet
 # SPDX-License-Identifier: MIT
-# https://gitlab.com/dominiksalvet/vhdldep
+# https://github.com/dominiksalvet/vhdldep
 #-------------------------------------------------------------------------------
 
 
