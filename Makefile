@@ -20,7 +20,7 @@ ECHO = echo
 
 # directory definitions
 BIN_DIR = bin
-PREFIX = $(HOME)/.local # default prefix value
+PREFIX = $(HOME)/.local
 
 #-------------------------------------------------------------------------------
 # TARGETS
