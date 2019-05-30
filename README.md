@@ -1,5 +1,7 @@
 # VHDL Dependency Generator *(vhdl-depgen)*
 
+> Simple VHDL dependency generator.
+
 An automatic dependency analyzer for VHDL source files, which can be used in a makefile of a VHDL project. It analyses use statements of one or more VHDL files and returns their file dependencies in a format of makefile rules. Dependencies to STD and IEEE libraries are ignored. Final dependencies can be included into a project makefile to make building VHDL components possible. The project is developed to work with [GHDL](https://github.com/ghdl/ghdl).
 
 ---

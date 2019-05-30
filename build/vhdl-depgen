@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #-------------------------------------------------------------------------------
-# Copyright 2018 Dominik Salvet
+# Copyright 2018-2019 Dominik Salvet
 # SPDX-License-Identifier: MIT
 # https://gitlab.com/dominiksalvet/vhdl-depgen
 #-------------------------------------------------------------------------------
@@ -43,9 +43,9 @@ OPTION:
   -about           display information about this program and exit"
 
 ABOUT_MESSAGE="vhdl-depgen $VERSION
-Generate dependencies of given VHDL files based on their 'use' statements.
+Simple VHDL dependency generator.
 
-Copy"'right 2018 Dominik Salvet
+Copy"'right 2018-2019 Dominik Salvet
 SPDX License Identifier: MIT
 https://gitlab.com/dominiksalvet/vhdl-depgen'
 

@@ -3,6 +3,10 @@ Upstream-Name: vhdl-depgen
 Upstream-Contact: Dominik Salvet
 Source: https://gitlab.com/dominiksalvet/vhdl-depgen
 
-Files: README.md CHANGELOG.md CONTRIBUTING.md
+Files: CHANGELOG.md CONTRIBUTING.md
 Copyright: Copyright 2018 Dominik Salvet
+License: MIT
+
+Files: README.md
+Copyright: Copyright 2018-2019 Dominik Salvet
 License: MIT
