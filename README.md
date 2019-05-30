@@ -34,10 +34,12 @@ my_obj_dir/lifo_tb.o: tb/lifo_tb.vhdl my_obj_dir/string_pkg.o my_obj_dir/lifo.o
 
 The *lifo_tb.vhdl* file has been taken from the [vhdl_collection](https://github.com/dominiksalvet/vhdl_collection) repository.
 
-## Contribute
+## Contributing
 
-See the [*CONTRIBUTING.md*](CONTRIBUTING.md) file for details.
+Do you want to contribute? Do you have any questions? Then the [*CONTRIBUTING.md*](CONTRIBUTING.md) file is here for you.
 
 ## License
 
-Licensing policy of this project is compliant with [REUSE Practices](https://reuse.software/practices/2.0/). Therefore, the license of a file of this project is determined by a [SPDX](https://spdx.org/) License Identifier or by the [*debian/copyright*](debian/copyright) file content.
+Licensing policy of gim is compliant with [REUSE Practices](https://reuse.software/practices/2.0/).
+
+The preferred license is the **MIT License** as stated in the [*LICENSE.txt*](LICENSE.txt) file.

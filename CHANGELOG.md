@@ -1,6 +1,8 @@
 # Changelog
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Individual releases can be obtained using the [tags](https://github.com/dominiksalvet/vhdldep/tags). Changes between their files can be viewed using the [compare](https://github.com/dominiksalvet/vhdldep/compare).
+All notable changes to vhdldep will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and vhdldep adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
