@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------
 # Copyright 2018 Dominik Salvet
 # SPDX-License-Identifier: MIT
-# https://gitlab.com/dominiksalvet/vhdl-depgen
+# https://gitlab.com/dominiksalvet/vhdldep
 #-------------------------------------------------------------------------------
 
 
@@ -18,7 +18,7 @@ CP := cp
 RM_F := rm -f
 
 # directory definitions
-BUILD_DIR := build
+SRC_DIR := src
 INSTALL_DIR := ~/.local/bin
 
 #-------------------------------------------------------------------------------
@@ -52,10 +52,10 @@ endef
 all: help
 
 install: # install the entire project
-	$(CP) $(BUILD_DIR)/vhdl-depgen $(INSTALL_DIR)/
+	$(CP) $(SRC_DIR)/vhdldep $(INSTALL_DIR)/
 
 uninstall: # uninstall the project
-	$(RM_F) $(INSTALL_DIR)/vhdl-depgen
+	$(RM_F) $(INSTALL_DIR)/vhdldep
 
 help: # default, show this help
 	$(call show_generated_help,makefile)

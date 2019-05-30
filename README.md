@@ -1,4 +1,4 @@
-# VHDL Dependency Generator *(vhdl-depgen)*
+# vhdldep
 
 > Simple VHDL dependency generator.
 
@@ -10,10 +10,10 @@ Remember to be explicit in use statements; every component that is about to be u
 
 ## Help
 
-Output of the `./vhdl-depgen -help` terminal command opened in the project *build* directory:
+Output of the `./vhdldep -help` terminal command opened in the project *src* directory:
 
 ```
-Usage: ./vhdl-depgen [OPTION]... FILE...
+Usage: ./vhdldep [OPTION]... FILE...
 
 OPTION:
   -object-dir=DIR  object files directory path
@@ -27,9 +27,9 @@ OPTION:
 An example of using this program:
 
 <pre>
-.../vhdl-depgen/build $ <b>./vhdl-depgen -object-dir=my_obj_dir tb/lifo_tb.vhdl</b>
+.../vhdldep/src $ <b>./vhdldep -object-dir=my_obj_dir tb/lifo_tb.vhdl</b>
 my_obj_dir/lifo_tb.o: tb/lifo_tb.vhdl my_obj_dir/string_pkg.o my_obj_dir/lifo.o
-.../vhdl-depgen/build $ 
+.../vhdldep/src $ 
 </pre>
 
 The *lifo_tb.vhdl* file has been taken from the [vhdl_collection](https://gitlab.com/dominiksalvet/vhdl_collection) repository.
