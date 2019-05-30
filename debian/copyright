@@ -3,11 +3,7 @@ Upstream-Name: vhdldep
 Upstream-Contact: Dominik Salvet <dominik.salvet@gmail.com>
 Source: https://github.com/dominiksalvet/vhdldep
 
-Files: CHANGELOG.md CONTRIBUTING.md
-Copyright: Copyright 2018 Dominik Salvet
-License: MIT
-
-Files: README.md
+Files: README.md CHANGELOG.md CONTRIBUTING.md
 Copyright: Copyright 2018-2019 Dominik Salvet
 License: MIT
 

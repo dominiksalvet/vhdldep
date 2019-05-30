@@ -10,7 +10,7 @@ The changes not yet present in any release are listed in this section.
 
 ### Added
 
-* Installation and uninstallation using delivered *makefile*.
+* Installation and uninstallation using delivered *Makefile*.
 * Support for the `-version` flag.
 
 ### Changed

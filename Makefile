@@ -25,7 +25,7 @@ INSTALL_DIR := ~/.local/bin
 # HELP GENERATOR
 #-------------------------------------------------------------------------------
 
-# sed script - get automatically target descriptions from a makefile
+# sed script - get automatically target descriptions from Makefile
 define GET_TARGET_DESCRIPTIONS
 /^[^:=#[:blank:]]+[[:blank:]]*:[^:=#]*#/!d
 s/[:=#[:blank:]][^#]*//
@@ -58,4 +58,4 @@ uninstall: # uninstall the project
 	$(RM_F) $(INSTALL_DIR)/vhdldep
 
 help: # default, show this help
-	$(call show_generated_help,makefile)
+	$(call show_generated_help,Makefile)
