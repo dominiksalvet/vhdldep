@@ -62,6 +62,6 @@ Do you want to contribute? Do you have any questions? Then the [*CONTRIBUTING.md
 
 ## License
 
-Licensing policy of gim is compliant with [REUSE Practices](https://reuse.software/practices/2.0/).
+Licensing policy of vhdldep is compliant with [REUSE Practices](https://reuse.software/practices/2.0/).
 
 The preferred license is the **MIT License** as stated in the [*LICENSE.txt*](LICENSE.txt) file.
