@@ -3,6 +3,9 @@
 # SPDX-License-Identifier: MIT
 # https://github.com/dominiksalvet/vhdldep
 #-------------------------------------------------------------------------------
+# DESCRIPTION:
+#   This file represents a makefile for vhdldep. It is meant to work with gim.
+#-------------------------------------------------------------------------------
 
 
 #-------------------------------------------------------------------------------
