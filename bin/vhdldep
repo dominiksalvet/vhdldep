@@ -27,8 +27,8 @@ done
 # DEFINITIONS
 #-------------------------------------------------------------------------------
 
-# the current version of the program
-VERSION=1.0.0
+# the current version of vhdldep
+VERSION=1.1.0
 
 # create a new line constant - \n
 NEW_LINE='
@@ -105,10 +105,6 @@ for i in "$@"; do
                 ;;
             -about)
                 echo "$ABOUT_MESSAGE"
-                exit 0
-                ;;
-            -version)
-                echo "$VERSION"
                 exit 0
                 ;;
             -*)

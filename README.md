@@ -2,6 +2,7 @@
 
 [![gim ready](https://img.shields.io/badge/gim-ready-571997.svg)](https://github.com/dominiksalvet/gim)
 [![reuse compliant](https://reuse.software/badge/reuse-compliant.svg)](https://reuse.software/)
+[![standard-readme compliant](https://img.shields.io/badge/readme_style-standard-brightgreen.svg)](https://github.com/RichardLitt/standard-readme)
 
 > Simple VHDL dependency generator.
 
@@ -11,7 +12,23 @@ An automatic dependency analyzer for VHDL source files, which can be used in a m
 
 Remember to be explicit in use statements; every component that is about to be used in a VHDL file must be accompanied with the appropriate use statement when using this program with that VHDL file.
 
-## Help
+## Table of Contents
+
+* [Install](#install)
+* [Usage](#usage)
+  * [Example](#example)
+* [Contributing](#contributing)
+* [License](#license)
+
+## Install
+
+Vhdldep is [gim](https://github.com/dominiksalvet/gim) ready. Install it locally by:
+
+```sh
+gim install github.com/dominiksalvet/vhdldep
+```
+
+## Usage
 
 Output of the `./vhdldep -help` terminal command opened in the project *bin* directory:
 
@@ -26,6 +43,8 @@ OPTION:
 ```
 
 ---
+
+### Example
 
 An example of using this program:
 
