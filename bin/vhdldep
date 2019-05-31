@@ -5,6 +5,11 @@
 # SPDX-License-Identifier: MIT
 # https://github.com/dominiksalvet/vhdldep
 #-------------------------------------------------------------------------------
+# DESCRIPTION:
+#   This file represents vhdldep - simple VHDL dependency generator.
+# PARAMETERS:
+#   All given arguments are processed as vhdldep's help describes.
+#-------------------------------------------------------------------------------
 
 
 #-------------------------------------------------------------------------------
@@ -12,13 +17,13 @@
 #-------------------------------------------------------------------------------
 
 # list of required software
-SW_REQUIRED='command echo sed ['
+SW_DEPS='command echo sed ['
 
 # check if some software is missing
-for i in $SW_REQUIRED; do
+for sw in $SW_DEPS; do
     # software is missing if at least one piece of software is missing
-    if ! command -v "$i" > /dev/null; then
-        echo "$0: Required software '$i' is missing, action canceled." >&2
+    if ! command -v -- "$sw" > /dev/null; then
+        echo "$0: missing $sw software" >&2
         exit 1
     fi
 done
@@ -30,17 +35,16 @@ done
 # the current version of vhdldep
 VERSION=1.1.0
 
-# create a new line constant - \n
-NEW_LINE='
-'
-
-HELP_MESSAGE="Usage: $0 [OPTION]... FILE...
+HELP_MESSAGE="USAGE:
+  $0 [OPTION...] FILE...
+  $0 COMMAND
 
 OPTION:
   -object-dir=DIR  object files directory path
-  --               force the following arguments to be file names
-  -help            display this help and exit
-  -about           display information about this program and exit"
+
+COMMAND:
+  help   show this help
+  about  show information"
 
 ABOUT_MESSAGE="vhdldep $VERSION
 Simple VHDL dependency generator.
@@ -49,8 +53,7 @@ Copy"'right 2018-2019 Dominik Salvet
 SPDX License Identifier: MIT
 https://github.com/dominiksalvet/vhdldep'
 
-HINT_MESSAGE="POSSIBLE SOLUTIONS:
-  * use the '$0 -help' command for more information"
+HINT_MESSAGE="Try '$0 help' for getting help."
 
 # normalize a path (removes only unnecessary slashes "/")
 NORMALIZE_PATH='s|/\+|/|g'
@@ -75,7 +78,8 @@ add_file() {
         file_list="$norm_path"
     else
         # the file path may contain spaces, it is required to use a different delimiter
-        file_list="$file_list$NEW_LINE$norm_path"
+        file_list="$file_list
+$norm_path"
     fi
 }
 
@@ -99,11 +103,11 @@ for i in "$@"; do
             --)
                 file_names_only=true
                 ;;
-            -help)
+            help)
                 echo "$HELP_MESSAGE"
                 exit 0
                 ;;
-            -about)
+            about)
                 echo "$ABOUT_MESSAGE"
                 exit 0
                 ;;
@@ -127,7 +131,8 @@ $HINT_MESSAGE" >&2
 fi
 
 # change internal field separator, namely for use in the following for loops
-IFS=$NEW_LINE
+IFS='
+'
 
 # check if files in the list exist
 for i in $file_list; do
