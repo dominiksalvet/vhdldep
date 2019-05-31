@@ -7,6 +7,10 @@ Files: README.md CHANGELOG.md CONTRIBUTING.md
 Copyright: Copyright 2018-2019 Dominik Salvet
 License: MIT
 
+Files: SECURITY.md
+Copyright: Copyright 2019 Dominik Salvet
+License: MIT
+
 Files: .github/*
 Copyright: Copyright 2019 Dominik Salvet
 License: MIT
