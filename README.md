@@ -2,7 +2,7 @@
 
 <p align="center">
     <a href="https://github.com/dominiksalvet/vhdldep">
-        <img src="img/example.png" alt="vhdldep example" width="882"></a>
+        <img src="img/example.png" alt="vhdldep example"></a>
 </p>
 
 <p align="center">
