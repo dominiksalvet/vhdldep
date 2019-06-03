@@ -10,14 +10,6 @@ The development of VHDL projects very often involves building multiple VHDL file
 
 Vhdldep analyzes use statements of given VHDL files and returns their file dependencies in a makefile format. That output can be easily used to determine the correct build order to help automate building VHDL projects.
 
-## Table of Contents
-
-* [Install](#install)
-* [Usage](#usage)
-  * [Example](#example)
-* [Contributing](#contributing)
-* [License](#license)
-
 ## Install
 
 Vhdldep is [gim ready](https://github.com/dominiksalvet/gim). Local installation:
