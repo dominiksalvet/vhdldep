@@ -1,8 +1,18 @@
 # vhdldep
 
-[![gim ready](https://img.shields.io/badge/gim-ready-571997.svg)](https://github.com/dominiksalvet/gim)
-[![reuse compliant](https://reuse.software/badge/reuse-compliant.svg)](https://reuse.software/)
-[![standard-readme compliant](https://img.shields.io/badge/readme_style-standard-brightgreen.svg)](https://github.com/RichardLitt/standard-readme)
+<p align="center">
+    <a href="https://github.com/dominiksalvet/vhdldep">
+        <img src="img/example.png" alt="vhdldep example"></a>
+</p>
+
+<p align="center">
+    <a href="https://github.com/dominiksalvet/gim" alt="gim ready">
+        <img src="https://img.shields.io/badge/gim-ready-571997.svg"></a>
+    <a href="https://reuse.software/" alt="reuse compliant">
+        <img src="https://reuse.software/badge/reuse-compliant.svg"></a>
+    <a href="https://github.com/RichardLitt/standard-readme" alt="standard-readme compliant">
+        <img src="https://img.shields.io/badge/readme_style-standard-brightgreen.svg"></a>
+</p>
 
 > Simple VHDL dependency generator.
 
