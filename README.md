@@ -22,13 +22,13 @@ gim install github.com/dominiksalvet/vhdldep
 
 Analyze a VHDL file dependencies:
 
-```sh
+```
 vhdldep <file>
 ```
 
 With custom prefix for generated paths:
 
-```sh
+```
 vhdldep -p <prefix> <file>
 ```
 
