@@ -20,7 +20,17 @@ gim install github.com/dominiksalvet/vhdldep
 
 ## Usage
 
-TODO
+Analyze a VHDL file dependencies:
+
+```sh
+vhdldep <file>
+```
+
+With custom prefix for generated paths:
+
+```sh
+vhdldep -p <prefix> <file>
+```
 
 ### Example
 
