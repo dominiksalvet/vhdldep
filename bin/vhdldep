@@ -145,16 +145,18 @@ for file_path in "$@"; do
     vhdl_prereq="$(echo "$file_path" | sed "$ESCAPE_SPACES")" &&
 
     # create other prerequisites
-    prereqs="$(sed "$REMOVE_COMMENTS" -- "$file_path")" &&
-    prereqs="$(echo "$prereqs" | grep -iF use)" && # accept only lines with use
-    prereqs="$(echo "$prereqs" | tr ';' '\n')" && # replace semicolons
-    prereqs="$(echo "$prereqs" | grep -iE "$ONE_USE_PER_LINE")" &&
-    prereqs="$(echo "$prereqs" | sed "$REMOVE_USE_WORDS")" &&
-    prereqs="$(echo "$prereqs" | sed "$REMOVE_WHITESPACES")" &&
-    prereqs="$(echo "$prereqs" | sed "$REMOVE_STANDARD_LIB_LINES")" &&
-    prereqs="$(echo "$prereqs" | sed "$REMOVE_QUANTIFIERS")" &&
-    prereqs="$(echo "$prereqs" | sed "$REMOVE_LIB_NAMES")" &&
-    prereqs="$(echo "$prereqs" | sed "$APPEND_OBJECT_SUFFIXES")" &&
+    prereqs="$(
+        sed "$REMOVE_COMMENTS" -- "$file_path" |
+        grep -iF use | # accept only lines with use
+        tr ';' '\n' | # replace semicolons
+        grep -iE "$ONE_USE_PER_LINE" |
+        sed -e "$REMOVE_USE_WORDS" \
+            -e "$REMOVE_WHITESPACES" \
+            -e "$REMOVE_STANDARD_LIB_LINES" \
+            -e "$REMOVE_QUANTIFIERS" \
+            -e "$REMOVE_LIB_NAMES" \
+            -e "$APPEND_OBJECT_SUFFIXES"
+    )" &&
 
     # add a prefix to prerequisites and transform them into a single line
     prereqs_line= &&
