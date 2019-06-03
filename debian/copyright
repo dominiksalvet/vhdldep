@@ -23,3 +23,7 @@ License: CC-BY-4.0
 Files: gim/*
 Copyright: Copyright 2019 Dominik Salvet
 License: MIT
+
+Files: img/example.png
+Copyright: Copyright 2019 Dominik Salvet
+License: MIT
