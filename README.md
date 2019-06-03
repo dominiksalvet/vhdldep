@@ -20,13 +20,13 @@ gim install github.com/dominiksalvet/vhdldep
 
 ## Usage
 
-Get VHDL file's dependencies:
+Get VHDL file's **dependencies**:
 
 ```
 vhdldep <file>
 ```
 
-With custom prefix for generated paths:
+With **custom prefix** for generated paths:
 
 ```
 vhdldep -p <prefix> <file>
