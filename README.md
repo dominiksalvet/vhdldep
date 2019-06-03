@@ -8,7 +8,7 @@
 
 The development of VHDL projects very often involves building multiple VHDL files. Based on designed architecture, some files must be built before others. That might cause problems with finding the correct build order. And that is exactly where vhdldep comes in handy.
 
-Vhdldep analyzes use statements of given VHDL files and returns their file dependencies in a makefile format. That output can be easily used to determine the correct build order to help automate building VHDL projects.
+Vhdldep analyzes use statements of given VHDL files and returns their **file dependencies in a makefile format**. That output can be easily used to determine the correct build order to help automate building VHDL projects.
 
 ## Install
 
