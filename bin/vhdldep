@@ -33,7 +33,7 @@ done
 #-------------------------------------------------------------------------------
 
 # the current version of vhdldep
-VERSION=1.1.0
+VERSION=2.0.0
 
 HELP_MESSAGE="USAGE:
   $0 [OPTION...] FILE...
