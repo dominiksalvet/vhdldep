@@ -20,7 +20,7 @@ gim install github.com/dominiksalvet/vhdldep
 
 ## Usage
 
-Analyze VHDL file's dependencies:
+Get VHDL file's dependencies:
 
 ```
 vhdldep <file>
