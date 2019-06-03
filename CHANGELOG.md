@@ -8,9 +8,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 The changes not yet present in any release are listed in this section.
 
+### Added
+
+* Argument parsing is done using `getopts`.
+* Support for multiple VHDL statements at a single line.
+
 ### Changed
 
 * Commands `-help`, `-about` have been renamed to `help`, `about`.
+* Option `-object-dir=DIR` has been changed to `-p PATH` to be more POSIX-friendly.
+* Vhdldep now keeps the original letter case.
+* All input file paths can be arbitrary.
 
 ## 1.1.0 (2019-05-31)
 

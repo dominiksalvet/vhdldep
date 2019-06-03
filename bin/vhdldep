@@ -17,7 +17,7 @@
 #-------------------------------------------------------------------------------
 
 # list of required software
-SW_DEPS='command echo sed ['
+SW_DEPS='command echo sed [ getopts tr grep'
 
 # check if some software is missing
 for sw in $SW_DEPS; do
@@ -40,7 +40,7 @@ HELP_MESSAGE="USAGE:
   $0 COMMAND
 
 OPTION:
-  -object-dir=DIR  object files directory path
+  -p PATH  prefix for generated paths
 
 COMMAND:
   help   show this help
@@ -55,159 +55,112 @@ https://github.com/dominiksalvet/vhdldep'
 
 HINT_MESSAGE="Try '$0 help' for getting help."
 
-# normalize a path (removes only unnecessary slashes "/")
-NORMALIZE_PATH='s|/\+|/|g'
-
-# in case of existing spaces, setup persisting spaces for one more sed processing
-SETUP_PERSIST_SPACES='s/ /\\\\ /g'
-
-# get object directory path, normalize it and set up persist spaces
-GET_OBJECT_DIR_PATH='
-s|^-object-dir=||
-s|$|/|
-'"$NORMALIZE_PATH"'
-'"$SETUP_PERSIST_SPACES"'
-'
-
-# function to add a file to the list of current ones
-add_file() {
-    # normalize the path
-    norm_path=$(echo "$1" | sed -e "$NORMALIZE_PATH")
-
-    if [ -z "$file_list" ]; then
-        file_list="$norm_path"
-    else
-        # the file path may contain spaces, it is required to use a different delimiter
-        file_list="$file_list
-$norm_path"
-    fi
-}
-
 #-------------------------------------------------------------------------------
-# PROCESSING PARAMETERS
+# ARGUMENT PARSING
 #-------------------------------------------------------------------------------
 
-# next parameters are only file names
-file_names_only=false
+# process commands
+case "$1" in
+    help) echo "$HELP_MESSAGE"; exit ;;
+    about) echo "$ABOUT_MESSAGE"; exit ;;
+esac
 
-# processing each parameter
-for i in "$@"; do
-    if [ "$file_names_only" = true ]; then
-        add_file "$i"
-    else
-        case "$i" in
-            -object-dir=?*)
-                # get the DIR path from this parameter
-                object_dir=$(echo "$i" | sed -e "$GET_OBJECT_DIR_PATH")
-                ;;
-            --)
-                file_names_only=true
-                ;;
-            help)
-                echo "$HELP_MESSAGE"
-                exit 0
-                ;;
-            about)
-                echo "$ABOUT_MESSAGE"
-                exit 0
-                ;;
-            -*)
-                echo "$0: The option '$i' was not recognized.
+# process options
+path_prefix=
+while getopts :p: opt; do
+    case "$opt" in
+        p)  path_prefix="$OPTARG" ;;
+        :)  echo "$0: no arg for -$OPTARG option
 $HINT_MESSAGE" >&2
-                exit 1
-                ;;
-            *)
-                add_file "$i"
-                ;;
-        esac
-    fi
+            exit 1
+            ;;
+        \?) echo "$0: illegal option -$OPTARG
+$HINT_MESSAGE" >&2
+            exit 1
+            ;;
+    esac
 done
+shift $((OPTIND - 1)) # shift to remaining arguments
 
-# check if any argument with file path provided
-if [ -z "$file_list" ]; then
-    echo "$0: No argument with file path provided.
+# check if there is a file argument
+if [ "$#" -eq 0 ]; then
+    echo "$0: no file argument provided
 $HINT_MESSAGE" >&2
     exit 1
 fi
 
-# change internal field separator, namely for use in the following for loops
-IFS='
-'
-
-# check if files in the list exist
-for i in $file_list; do
-    if [ ! -f "$i" ]; then
-        echo "$0: Can not open the '$i' file." >&2
-        exit 1
-    fi
-done
-
 #-------------------------------------------------------------------------------
-# VHDL FILES ANALYSIS
+# SED SCRIPTS (BRE)
 #-------------------------------------------------------------------------------
 
-GET_TARGET='
-s|^.*/||
-s/\..*/.o/
-s|^|'"$object_dir"'|
-'
+# escape all existing spaces
+ESCAPE_SPACES='s/ /\\ /g'
 
+# remove VHDL comment
 REMOVE_COMMENTS='s/--.*$//'
 
-ALL_TO_LOWER_CASE='s/.*/\L&/'
+# remove first use word from each line
+REMOVE_USE_WORDS='s/[Uu][Ss][Ee]//'
 
-GET_USES='
-/^\s*use\s.*\;/b
-/^\s*use\s/,/\;/!d
+# remove all whitespace characters
+REMOVE_WHITESPACES='s/[[:space:]]*//g'
+
+# remove all use statements that use standard libraries (ieee, std)
+REMOVE_STANDARD_LIB_LINES='
+/^[Ii][Ee][Ee][Ee]\./d
+/^[Ss][Tt][Dd]\./d
 '
 
-ONE_USE_PER_LINE='
-/use/!b
-:next
-/\;/bdone
-N
-bnext
-:done
-s/\n//g
-'
+# remove '.all' suffix from use statements
+REMOVE_QUANTIFIERS='s/\.[Aa][Ll][Ll]$//'
 
-ONE_LOCAL_USE_DEPENDENCY_PER_LINE='
-s/use//
-s/\s*//g
-/^ieee\|^std/d
-s/\;$//
-s/\.all$//
-s/^.*\.//
-s/$/\.o/
-s|^|'"$object_dir"'|
-'
+# remove library names from current use statement
+REMOVE_LIB_NAMES='s/^.*\.//'
 
-LOCAL_USE_DEPENDENCIES='
-:next
-$bdone
-N
-bnext
-:done
-s/\n/ /g
-'
+# append object suffixes to lines
+APPEND_OBJECT_SUFFIXES='s/$/\.o/'
 
-for i in $file_list; do
+#-------------------------------------------------------------------------------
+# GREP PATTERNS (ERE)
+#-------------------------------------------------------------------------------
 
-    target=$(
-    echo "$i" |
-    sed -e "$GET_TARGET"
-    )
+# print all use statements, one per line
+ONE_USE_PER_LINE='^[[:space:]]*use[[:space:]]+[[:alnum:]]'
 
-    sed_result=$(
-    sed -e "$REMOVE_COMMENTS" \
-        -e "$ALL_TO_LOWER_CASE" \
-        -e "$GET_USES" \
-        -- "$i" |
-    sed -e "$ONE_USE_PER_LINE" \
-        -e "$ONE_LOCAL_USE_DEPENDENCY_PER_LINE" |
-    sed -e "$LOCAL_USE_DEPENDENCIES"
-    )
+#-------------------------------------------------------------------------------
+# RULES GENERATOR
+#-------------------------------------------------------------------------------
 
-    echo "$target: $(echo "$i" | sed -e "$SETUP_PERSIST_SPACES") $sed_result"
+# escape spaces in path prefix
+path_prefix="$(echo "$path_prefix" | sed "$ESCAPE_SPACES")" &&
 
+# create a make rule for each given file
+for file_path in "$@"; do
+    # create the target of the current rule
+    target="${file_path##*/}" && # remove path prefix
+    target="${target%.*}" && # remove file suffix
+    target="${path_prefix}$target".o && # prepend delivered path prefix
+
+    # create the VHDL file prerequisite
+    vhdl_prereq="$(echo "$file_path" | sed "$ESCAPE_SPACES")" &&
+
+    # create other prerequisites
+    prereqs="$(sed "$REMOVE_COMMENTS" -- "$file_path")" &&
+    prereqs="$(echo "$prereqs" | grep -iF use)" && # accept only lines with use
+    prereqs="$(echo "$prereqs" | tr ';' '\n')" && # replace semicolons
+    prereqs="$(echo "$prereqs" | grep -iE "$ONE_USE_PER_LINE")" &&
+    prereqs="$(echo "$prereqs" | sed "$REMOVE_USE_WORDS")" &&
+    prereqs="$(echo "$prereqs" | sed "$REMOVE_WHITESPACES")" &&
+    prereqs="$(echo "$prereqs" | sed "$REMOVE_STANDARD_LIB_LINES")" &&
+    prereqs="$(echo "$prereqs" | sed "$REMOVE_QUANTIFIERS")" &&
+    prereqs="$(echo "$prereqs" | sed "$REMOVE_LIB_NAMES")" &&
+    prereqs="$(echo "$prereqs" | sed "$APPEND_OBJECT_SUFFIXES")" &&
+
+    # add a prefix to prerequisites and transform them into a single line
+    prereqs_line= &&
+    for prereq in $prereqs; do
+        prereqs_line="${prereqs_line} ${path_prefix}$prereq"
+    done &&
+
+    echo "$target: ${vhdl_prereq}$prereqs_line"
 done
