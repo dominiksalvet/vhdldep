@@ -12,7 +12,7 @@ Vhdldep analyzes use statements of given VHDL files and returns their **file dep
 
 ## Install
 
-Vhdldep is [gim ready](https://github.com/dominiksalvet/gim). Local installation:
+Vhdldep is [gim ready](https://github.com/dominiksalvet/gim). Local installation/update:
 
 ```sh
 gim install github.com/dominiksalvet/vhdldep
