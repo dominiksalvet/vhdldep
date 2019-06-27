@@ -1,6 +1,6 @@
 # vhdldep
 
-[![gim ready](https://img.shields.io/badge/gim-ready-571997.svg)](https://github.com/dominiksalvet/gim)
+[![GitPack](https://img.shields.io/badge/Git-Pack-571997.svg)](https://github.com/dominiksalvet/gitpack)
 [![reuse compliant](https://reuse.software/badge/reuse-compliant.svg)](https://reuse.software/)
 [![standard-readme compliant](https://img.shields.io/badge/readme_style-standard-brightgreen.svg)](https://github.com/RichardLitt/standard-readme)
 
@@ -12,10 +12,10 @@ Vhdldep analyzes use statements of given VHDL files and returns their **file dep
 
 ## Install
 
-Vhdldep is [gim ready](https://github.com/dominiksalvet/gim). Local installation/update:
+Vhdldep uses [GitPack](https://github.com/dominiksalvet/gitpack). Local installation/update:
 
 ```sh
-gim install github.com/dominiksalvet/vhdldep
+gitpack install github.com/dominiksalvet/vhdldep
 ```
 
 ## Usage

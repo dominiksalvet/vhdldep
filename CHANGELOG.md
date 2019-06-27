@@ -10,7 +10,12 @@ The changes not yet present in any release are listed in this section.
 
 ### Added
 
-* Support for [GitPack](https://github.com/dominiksalvet/gitpack).
+* Support for [GitPack](https://github.com/dominiksalvet/gitpack) has been added.
+
+### Removed
+
+* Support for gim has been removed.
+* *Makefile* has been removed.
 
 ## 2.0.0 (2019-06-03)
 
