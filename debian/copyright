@@ -27,3 +27,7 @@ License: MIT
 Files: img/example.png
 Copyright: Copyright 2019 Dominik Salvet
 License: MIT
+
+Files: .gitpack/*
+Copyright: Copyright 2019 Dominik Salvet
+License: MIT
