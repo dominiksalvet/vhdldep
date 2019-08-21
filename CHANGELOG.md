@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 The changes not yet present in any release are listed in this section.
 
+## 2.1.1 (2019-08-21)
+
+### Changed
+
+* Meet REUSE Specification - Version 3.0.
+
 ## 2.1.0 (2019-07-04)
 
 ### Added
