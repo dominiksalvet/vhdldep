@@ -46,6 +46,6 @@ Do you want to contribute? Do you have any questions? Then the [*CONTRIBUTING.md
 
 ## License
 
-Licensing policy of vhdldep is compliant with [REUSE Specification](https://reuse.software/spec/).
+Licensing policy of vhdldep is compliant with [REUSE Specification 3.0](https://reuse.software/spec/).
 
 The preferred license is the **MIT License** as stated in the [*MIT.txt*](LICENSES/MIT.txt) file.
