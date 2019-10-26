@@ -1,1 +1,1 @@
-bin/vhdldep /usr/local/bin
+src/vhdldep /usr/local/bin

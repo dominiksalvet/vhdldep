@@ -1,1 +1,1 @@
-bin/vhdldep "$HOME"/.local/bin
+src/vhdldep "$HOME"/.local/bin
