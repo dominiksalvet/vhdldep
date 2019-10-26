@@ -11,6 +11,7 @@ The changes not yet present in any release are listed in this section.
 ### Fixed
 
 * No standard output is produced when a processed file does not exists.
+* When any given file does not exists, vhdldep does not process further files.
 
 ## 2.1.1 (2019-08-21)
 

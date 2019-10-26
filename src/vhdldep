@@ -165,5 +165,5 @@ for file_path in "$@"; do
         prereqs_line="${prereqs_line} ${path_prefix}$prereq"
     done &&
 
-    echo "$target: ${vhdl_prereq}$prereqs_line"
+    echo "$target: ${vhdl_prereq}$prereqs_line" || exit
 done
