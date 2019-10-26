@@ -145,8 +145,9 @@ for file_path in "$@"; do
     vhdl_prereq="$(echo "$file_path" | sed "$ESCAPE_SPACES")" &&
 
     # create other prerequisites
+    prereqs="$(sed "$REMOVE_COMMENTS" -- "$file_path")" &&
     prereqs="$(
-        sed "$REMOVE_COMMENTS" -- "$file_path" |
+        echo "$prereqs" |
         grep -iF use | # accept only lines with use
         tr ';' '\n' | # replace semicolons
         grep -iE "$ONE_USE_PER_LINE" |
