@@ -79,8 +79,8 @@ $HINT_MESSAGE" >&2
             exit 1
             ;;
     esac
-done
-shift $((OPTIND - 1)) # shift to remaining arguments
+done &&
+shift $((OPTIND - 1)) || exit # shift to remaining arguments
 
 # check if there is a file argument
 if [ "$#" -eq 0 ]; then
