@@ -1,7 +1,6 @@
 # vhdldep
 
 [![GitPack](https://img.shields.io/badge/-GitPack-571997)](https://github.com/dominiksalvet/gitpack)
-[![reuse compliant](https://reuse.software/badge/reuse-compliant.svg)](https://reuse.software)
 [![standard-readme compliant](https://img.shields.io/badge/readme_style-standard-brightgreen.svg)](https://github.com/RichardLitt/standard-readme)
 
 > Simple VHDL dependency generator.
@@ -46,6 +45,4 @@ Do you want to contribute? Do you have any questions? Then the [*CONTRIBUTING.md
 
 ## License
 
-Licensing policy of vhdldep is compliant with [REUSE Specification 3.0](https://reuse.software/spec/).
-
-The preferred license is the **MIT License** as stated in the [*MIT.txt*](LICENSES/MIT.txt) file.
+This project is licensed under the [MIT License](LICENSE).

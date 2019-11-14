@@ -2,8 +2,7 @@
 
 #-------------------------------------------------------------------------------
 # Copyright 2018-2019 Dominik Salvet
-# SPDX-License-Identifier: MIT
-# https://github.com/dominiksalvet/vhdldep
+# github.com/dominiksalvet/vhdldep
 #-------------------------------------------------------------------------------
 # DESCRIPTION:
 #   This file represents vhdldep - simple VHDL dependency generator.
@@ -49,9 +48,8 @@ COMMAND:
 ABOUT_MESSAGE="vhdldep $VERSION
 Simple VHDL dependency generator.
 
-Copy"'right 2018-2019 Dominik Salvet
-SPDX License Identifier: MIT
-https://github.com/dominiksalvet/vhdldep'
+Copyright 2018-2019 Dominik Salvet
+github.com/dominiksalvet/vhdldep"
 
 HINT_MESSAGE="Try '$0 help' for getting help."
 
