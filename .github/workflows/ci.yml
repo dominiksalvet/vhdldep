@@ -1,0 +1,19 @@
+#-------------------------------------------------------------------------------
+# Copyright 2019 Dominik Salvet
+# github.com/dominiksalvet/vhdldep
+#-------------------------------------------------------------------------------
+
+name: CI
+on: push
+
+jobs:
+  Analysis:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Check shellcheck
+      run: shellcheck --version
+
+    - name: Check source files
+      run: shellcheck src/*
