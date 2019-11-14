@@ -1,5 +1,6 @@
 # vhdldep
 
+[![CI status](https://github.com/dominiksalvet/vhdldep/workflows/CI/badge.svg)](https://github.com/dominiksalvet/vhdldep/actions)
 [![GitPack](https://img.shields.io/badge/-GitPack-571997)](https://github.com/dominiksalvet/gitpack)
 [![standard-readme compliant](https://img.shields.io/badge/readme_style-standard-brightgreen.svg)](https://github.com/RichardLitt/standard-readme)
 
