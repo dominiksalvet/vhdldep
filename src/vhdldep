@@ -21,8 +21,7 @@ SW_DEPS='command echo sed [ getopts tr grep'
 for sw in $SW_DEPS; do
     # software is missing if at least one piece of software is missing
     if ! command -v -- "$sw" > /dev/null; then
-        echo "$0: missing $sw software" >&2
-        exit 1
+        echo "$0: missing $sw software" >&2; exit 1
     fi
 done
 
@@ -50,8 +49,6 @@ Simple VHDL dependency generator.
 Copyright 2018-2019 Dominik Salvet
 github.com/dominiksalvet/vhdldep"
 
-HINT_MESSAGE="Try '$0 help' for getting help."
-
 #-------------------------------------------------------------------------------
 # ARGUMENT PARSING
 #-------------------------------------------------------------------------------
@@ -66,24 +63,16 @@ esac
 path_prefix=
 while getopts :p: opt; do
     case "$opt" in
-        p)  path_prefix="$OPTARG" ;;
-        :)  echo "$0: no arg for -$OPTARG option
-$HINT_MESSAGE" >&2
-            exit 1
-            ;;
-        \?) echo "$0: illegal option -$OPTARG
-$HINT_MESSAGE" >&2
-            exit 1
-            ;;
+        p) path_prefix="$OPTARG" ;;
+        :) echo "$0: no arg for -$OPTARG option" >&2; exit 1 ;;
+        \?) echo "$0: illegal option -$OPTARG" >&2; exit 1 ;;
     esac
 done &&
 shift "$((OPTIND - 1))" || exit # shift to remaining arguments
 
 # check if there is a file argument
 if [ "$#" -eq 0 ]; then
-    echo "$0: no file argument provided
-$HINT_MESSAGE" >&2
-    exit 1
+    echo "$0: no file argument provided" >&2; exit 1
 fi
 
 #-------------------------------------------------------------------------------
