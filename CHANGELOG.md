@@ -11,6 +11,7 @@ The changes not yet present in any release are listed in this section.
 ### Changed
 
 * Stop following REUSE Specification - Version 3.0.
+* Error messages have been simplified and do not provide hint messages anymore.
 
 ## 2.1.2 (2019-10-26)
 
