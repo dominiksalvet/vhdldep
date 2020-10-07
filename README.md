@@ -38,7 +38,7 @@ vhdldep -p <prefix> <file>
     <img src="img/example.png" alt="vhdldep example">
 </p>
 
-The *alu.vhdl* file has been borrowed from the [Limen Alpha](https://github.com/dominiksalvet/limen_alpha) processor.
+The *alu.vhdl* file has been borrowed from the [Limen Alpha](https://github.com/dominiksalvet/limen-alpha) processor.
 
 ## Contributing
 
