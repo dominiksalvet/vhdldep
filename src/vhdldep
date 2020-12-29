@@ -1,8 +1,8 @@
 #!/bin/sh
 
 #-------------------------------------------------------------------------------
-# Copyright 2018-2019 Dominik Salvet
-# github.com/dominiksalvet/vhdldep
+# Copyright 2018-2020 Dominik Salvet
+# https://github.com/dominiksalvet/vhdldep
 #-------------------------------------------------------------------------------
 # DESCRIPTION:
 #   This file represents vhdldep - simple VHDL dependency generator.
@@ -46,8 +46,8 @@ COMMAND:
 ABOUT_MESSAGE="vhdldep $VERSION
 Simple VHDL dependency generator.
 
-Copyright 2018-2019 Dominik Salvet
-github.com/dominiksalvet/vhdldep"
+Copyright 2018-2020 Dominik Salvet
+https://github.com/dominiksalvet/vhdldep"
 
 #-------------------------------------------------------------------------------
 # ARGUMENT PARSING
