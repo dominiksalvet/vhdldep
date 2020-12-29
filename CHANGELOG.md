@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 The changes not yet present in any release are listed in this section.
 
+### Changed
+
+* Adapt to new GitPack 1.0.0 installation format.
+
 ## 2.1.3 (2019-11-14)
 
 ### Added
