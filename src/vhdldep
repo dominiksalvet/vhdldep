@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #-------------------------------------------------------------------------------
-# Copyright 2018-2020 Dominik Salvet
+# Copyright 2018-2021 Dominik Salvet
 # https://github.com/dominiksalvet/vhdldep
 #-------------------------------------------------------------------------------
 # DESCRIPTION:
@@ -30,7 +30,7 @@ done
 #-------------------------------------------------------------------------------
 
 # the current version of vhdldep
-VERSION=2.1.3
+VERSION=2.2.0
 
 HELP_MESSAGE="USAGE:
   $0 [OPTION...] FILE...
@@ -46,7 +46,7 @@ COMMAND:
 ABOUT_MESSAGE="vhdldep $VERSION
 Simple VHDL dependency generator.
 
-Copyright 2018-2020 Dominik Salvet
+Copyright 2018-2021 Dominik Salvet
 https://github.com/dominiksalvet/vhdldep"
 
 #-------------------------------------------------------------------------------

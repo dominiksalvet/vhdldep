@@ -1,3 +1,7 @@
+**If you have GitPack 0.7.0 and lower, please visit [this discussion](https://github.com/dominiksalvet/gitpack/discussions/10).**
+
+---
+
 # vhdldep
 
 [![CI status](https://github.com/dominiksalvet/vhdldep/workflows/CI/badge.svg)](https://github.com/dominiksalvet/vhdldep/commits)
